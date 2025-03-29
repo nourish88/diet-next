@@ -3,10 +3,10 @@ import DietService from "@/services/DietService";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
   try {
-    const dietId = Number(params.id);
+    const dietId = Number(context.params.id);
 
     if (isNaN(dietId)) {
       return NextResponse.json({ error: "Invalid diet ID" }, { status: 400 });
@@ -30,10 +30,10 @@ export async function GET(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
   try {
-    const dietId = Number(params.id);
+    const dietId = Number(context.params.id);
 
     if (isNaN(dietId)) {
       return NextResponse.json({ error: "Invalid diet ID" }, { status: 400 });

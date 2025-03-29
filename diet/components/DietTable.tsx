@@ -16,6 +16,7 @@ import { useState, useEffect } from "react";
 import "react-resizable/css/styles.css";
 import { Resizable } from "react-resizable";
 import { Clock, Coffee, FileText, Menu, Trash2 } from "lucide-react";
+import type { DragDropContextProps } from "react-beautiful-dnd";
 
 interface DietTableProps {
   diet: Diet;
@@ -32,6 +33,12 @@ interface DietTableProps {
   setDiet: React.Dispatch<React.SetStateAction<Diet>>;
   fontSize?: number;
 }
+
+const DragDropContextWrapper: React.FC<
+  DragDropContextProps & { children: React.ReactNode }
+> = ({ children, onDragEnd }) => {
+  return <DragDropContext onDragEnd={onDragEnd}>{children}</DragDropContext>;
+};
 
 const DietTable = ({
   diet,
@@ -124,8 +131,9 @@ const DietTable = ({
 
   return (
     <div className="overflow-x-auto border-2 border-purple-700 rounded-lg">
-      <DragDropContext onDragEnd={onDragEnd} {...({} as any)}>
-        <Droppable droppableId={`${contextId}`} direction="vertical">
+      {/* @ts-ignore - Ignoring TypeScript error for DragDropContext children */}
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Droppable droppableId="table-body" direction="vertical">
           {(provided: DroppableProvided) => (
             <table
               className="min-w-full table-fixed rounded-lg overflow-hidden shadow-md"

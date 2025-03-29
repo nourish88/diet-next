@@ -3,10 +3,10 @@ import ClientService from "@/services/ClientService";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
   try {
-    const clientId = Number(params.id);
+    const clientId = Number(context.params.id);
 
     if (isNaN(clientId)) {
       return NextResponse.json({ error: "Invalid client ID" }, { status: 400 });
@@ -30,10 +30,10 @@ export async function GET(
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
   try {
-    const clientId = Number(params.id);
+    const clientId = Number(context.params.id);
 
     if (isNaN(clientId)) {
       return NextResponse.json({ error: "Invalid client ID" }, { status: 400 });
@@ -60,10 +60,10 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
   try {
-    const clientId = Number(params.id);
+    const clientId = Number(context.params.id);
 
     if (isNaN(clientId)) {
       return NextResponse.json({ error: "Invalid client ID" }, { status: 400 });
