@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beslenme Programı</title>
+    <meta http-equiv="refresh" content="0;url=/diyet" />
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+        background-color: #f7fafc;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+      }
+      .container {
+        text-align: center;
+        max-width: 32rem;
+        padding: 2rem;
+        background-color: white;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        color: #2d3748;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        font-weight: bold;
+      }
+      p {
+        color: #4a5568;
+        margin-bottom: 1rem;
+      }
+      .spinner {
+        width: 2rem;
+        height: 2rem;
+        border: 0.25rem solid rgba(66, 153, 225, 0.3);
+        border-radius: 50%;
+        border-top-color: #4299e1;
+        animation: spin 1s ease-in-out infinite;
+        margin: 0 auto;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Beslenme Programı</h1>
+      <p>Yönlendiriliyor...</p>
+      <div class="spinner"></div>
+    </div>
+  </body>
+</html>
