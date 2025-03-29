@@ -16,11 +16,11 @@ import { initialDiet } from "../models/dietModels";
 import DietFormActions from "./DietFormActions";
 import DietFormBasicFields from "./DietFormBasicFields";
 import { create } from "zustand";
-import { useDietActions } from "../hooks/useDietActions";
-import { useClientActions } from "../hooks/useClientActions";
+// import { useDietActions } from "../hooks/useDietActions";
+// import { useClientActions } from "../hooks/useClientActions";
 import { ToastContainer } from "./ui/toast";
 import { useToast } from "./ui/use-toast";
-import ClientSelector from "./ClientSelector";
+// import ClientSelector from "./ClientSelector";
 
 export const useFontStore = create<{
   fontSize: number;
@@ -38,15 +38,43 @@ export const useFontStore = create<{
   })
 );
 
+// Interface for the ClientSelector component
+interface ClientSelectorProps {
+  onSelectClient: (clientId: number | null) => void;
+  selectedClientId: number | null;
+}
+
+// Placeholder ClientSelector component
+const ClientSelector = ({
+  onSelectClient,
+  selectedClientId,
+}: ClientSelectorProps) => (
+  <div className="rounded-lg border-2 border-purple-700 bg-white shadow-sm overflow-hidden">
+    <div className="bg-gradient-to-r from-indigo-600 to-purple-700 px-6 py-4 border-b border-indigo-800 text-white">
+      <h3 className="text-lg font-medium">Müşteri Seçimi</h3>
+      <p className="text-sm text-blue-100 mt-1">
+        Müşteri seçimi geçici olarak devre dışı
+      </p>
+    </div>
+    <div className="p-6">
+      <p>Veritabanı yapılandırma aşamasında</p>
+    </div>
+  </div>
+);
+
 const DietForm = () => {
   const [diet, setDiet] = useState<Diet>(initialDiet);
   const [selectedClientId, setSelectedClientId] = useState<number | null>(null);
   const [contextId] = useState(0);
 
-  const { toast, toasts, dismiss } = useToast();
-  const { saveDiet, isLoading: isSaving } = useDietActions(
-    selectedClientId || 0
-  );
+  // Disable for initial deployment
+  // const { toast, toasts, dismiss } = useToast();
+  // const { saveDiet, isLoading: isSaving } = useDietActions(selectedClientId || 0);
+  const { toast, toasts, dismiss } = {
+    toast: () => {},
+    toasts: [],
+    dismiss: () => {},
+  };
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -182,6 +210,10 @@ const DietForm = () => {
   };
 
   const handleSaveToDB = async () => {
+    // Temporary placeholder for database saving
+    alert("Database saving temporarily disabled for deployment testing.");
+    // Original code commented out for now
+    /*
     if (!selectedClientId) {
       toast({
         title: "Hata",
@@ -209,6 +241,7 @@ const DietForm = () => {
         variant: "destructive",
       });
     }
+    */
   };
 
   return (
