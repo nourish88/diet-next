@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Bare minimum configuration
+  // Basic configuration
   reactStrictMode: true,
 
   // Skip type checking during builds
@@ -13,8 +13,13 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
 
-  // Output static files as well
+  // Use standalone mode instead of export as it's more compatible
   output: "standalone",
+
+  // Disable image optimization to improve compatibility
+  images: {
+    unoptimized: true,
+  },
 };
 
 export default nextConfig;
